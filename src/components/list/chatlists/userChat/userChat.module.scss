@@ -1,0 +1,8 @@
+.userlistContainer {
+  max-height: 470px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
