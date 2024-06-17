@@ -22,7 +22,7 @@ const Chat = () => {
         <div className="flex gap-3">
           <img
             className="rounded-full w-[25%]"
-            src={"/public/avatar.jpg"}
+            src={"/dist/avatar.jpg"}
             alt="BigCo Inc. logo"
           />
           <div className="items-center">
