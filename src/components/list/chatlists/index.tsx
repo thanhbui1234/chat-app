@@ -13,12 +13,12 @@ const ChatList = () => {
         <div
           className={cslx(
             style.chatlistContainer,
-            "flex gap-[10px] items-center  rounded-sm "
+            "flex gap-[10px] items-center  rounded-sm dark:bg-[#364a5e] "
           )}
         >
-          <CiSearch className="py-1 cursor-pointer" size={24}></CiSearch>
+          <CiSearch className="py-1 cursor-pointer " size={24}></CiSearch>
           <input
-            className="outline-none bg-transparent text-white"
+            className="outline-none bg-transparent  text-white "
             type="text"
             placeholder="search"
             name=""
@@ -37,7 +37,7 @@ const ChatList = () => {
         )}
       </div>
 
-      <div>
+      <div className="">
         <UserChat></UserChat>
       </div>
     </div>
