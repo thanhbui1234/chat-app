@@ -1,6 +1,6 @@
 import style from "./chat.module.scss";
 import cslx from "clsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcAbout } from "react-icons/fc";
 import { DarkModeContext } from "../../contexts/DarkmodeContext";
 import { IoIosVideocam } from "react-icons/io";
@@ -8,13 +8,22 @@ import { CiImageOn } from "react-icons/ci";
 import { CiCamera } from "react-icons/ci";
 import { CiMicrophoneOn } from "react-icons/ci";
 import { CiFaceSmile } from "react-icons/ci";
-import EmojiPicker from 'emoji-picker-react';
+import Picker , {EmojiClickData} from 'emoji-picker-react';
 
 const Chat = () => {
   const darkModeContext = useContext(DarkModeContext);
+  const [inputStr, setInputStr] = useState<string>("");
 
+  const [showEmoji,setShowEmoji] = useState<boolean>(false)
   if (!darkModeContext) {
     throw new Error('DarkModeToggle must be used within a DarkModeProvider');
+  }
+
+  
+
+  const onEmojiClick = (emojiObject :EmojiClickData) =>{
+    setInputStr(prevInput => prevInput + emojiObject?.emoji)    
+    setShowEmoji(false)
   }
 
   const { isDarkMode } = darkModeContext;
@@ -46,10 +55,10 @@ const Chat = () => {
           <CiCamera className="mt-2" size={30} />
           <CiMicrophoneOn className="mt-2" size={30} />
         </div>
-        <input className={cslx('w-[420px] outline-none py-2 px-3 rounded-md', style.messageChat)} type="text" placeholder={"Type a message"} />
+        <input value={inputStr} onChange={(e)=>setInputStr(e.target.value)} className={cslx('w-[420px] outline-none py-2 px-3 rounded-md', style.messageChat)} type="text" placeholder={"Type a message"} />
         <div className="flex gap-3">
-          <CiFaceSmile className="mt-2" size={30} />
-          <EmojiPicker />
+          <CiFaceSmile onClick={()=>setShowEmoji(!showEmoji)} className="mt-2 cursor-pointer" size={30} />
+          <Picker style={{ position: 'absolute', bottom: '50px',  }} onEmojiClick={onEmojiClick} open={showEmoji} />
           <button className="mt-2 text-white bg-blue-600 w-16 h-7 rounded-md">Send</button>
         </div>
       </div>
