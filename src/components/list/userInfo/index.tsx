@@ -7,7 +7,7 @@ const UserInfo = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="flex items-center  gap-3">
-        <img className="rounded-full w-[15%]" src={'/public/avatar.jpg'} alt="BigCo Inc. logo" />
+        <img className="rounded-full w-[15%]" src={'https://i.ibb.co/S5wwYvV/avatar.jpg'} alt="BigCo Inc. logo" />
         <h2>Chi thanh</h2>
       </div>
       <div className="flex gap-2 ">

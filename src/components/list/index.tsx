@@ -2,8 +2,9 @@ import { useContext } from "react";
 import ChatList from "./chatlists"
 import UserInfo from "./userInfo"
 import { DarkModeContext } from "../../contexts/DarkmodeContext";
-import { IoFlashlight } from "react-icons/io5";
-import { IoFlashlightOutline } from "react-icons/io5";
+import { AiFillSun } from "react-icons/ai";
+import { AiOutlineSun } from "react-icons/ai";
+
 
 const DarkModeToggle: React.FC = () => {
   const darkModeContext = useContext(DarkModeContext);
@@ -19,7 +20,7 @@ const DarkModeToggle: React.FC = () => {
       onClick={() => setIsDarkMode(!isDarkMode)}
       className="p-2  rounded"
     >
-      {isDarkMode ? <IoFlashlightOutline /> : <IoFlashlight /> }
+      {isDarkMode ? <AiFillSun size={30} /> : <AiOutlineSun size={30} /> }
     </button>
   );
 };
