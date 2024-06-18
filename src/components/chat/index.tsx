@@ -35,7 +35,7 @@ const Chat = () => {
         <div className="flex gap-3">
           <img
             className="rounded-full w-[25%]"
-            src={"/public/avatar.jpg"}
+            src={"https://i.ibb.co/S5wwYvV/avatar.jpg"}
             alt="BigCo Inc. logo"
           />
           <div className="items-center">
