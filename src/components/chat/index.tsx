@@ -10,7 +10,10 @@ import { CiMicrophoneOn } from "react-icons/ci";
 import { CiFaceSmile } from "react-icons/ci";
 import Picker, { EmojiClickData } from "emoji-picker-react";
 import WebcamComponent from "../audio/webcam";
-
+import Convesation from "./conversation";
+import { collection, getDocs  } from "firebase/firestore";
+import { useRef } from "react";
+import { db } from "../../libs/firebase";
 const Chat = () => {
   const darkModeContext = useContext(DarkModeContext);
   const [inputStr, setInputStr] = useState<string>("");
@@ -25,7 +28,16 @@ const Chat = () => {
     setShowEmoji(false);
   };
 
-  
+  const logFireBase = async () =>{
+    await getDocs(collection(db, "bosss"))
+    .then((querySnapshot)=>{               
+        const newData = querySnapshot.docs
+            .map((doc) => ({...doc.data(), id:doc.id }));
+        console.log( newData);
+    })
+  }
+  const endRef = useRef(null)
+
   const { isDarkMode } = darkModeContext;
   return (
     <div
@@ -56,7 +68,10 @@ const Chat = () => {
           )}
         </div>
       </div>
-      <div className="flex-1 border-b-[1px] border-gray-500">home</div>
+      <div className="flex-1 border-b-[1px] border-gray-500">
+        <Convesation/>
+        <div ref={endRef}></div>
+      </div>
       <div className="flex gap-10 p-4 ">
         <div className="flex gap-5">
           <CiImageOn className="mt-2" size={30} />
@@ -73,7 +88,6 @@ const Chat = () => {
           type="text"
           placeholder={"Type a message"}
         />
-
       <WebcamComponent isScreenShot={isScreenShot}  />
         <div className="flex gap-3">
           <CiFaceSmile
@@ -87,7 +101,7 @@ const Chat = () => {
             onEmojiClick={onEmojiClick}
             open={showEmoji}
           />
-          <button className="mt-2 text-white bg-blue-600 w-16 h-7 rounded-md">
+          <button onClick={()=>logFireBase()} className="mt-2 text-white bg-blue-600 w-16 h-7 rounded-md">
             Send
           </button>
         </div>

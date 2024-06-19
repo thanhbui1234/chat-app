@@ -27,7 +27,7 @@ const WebcamComponent = (props: cameraProp) => {
         textAlign: "center",
         padding: "20px",
         position: "absolute",
-        top: "20%",
+        bottom: "0%",
       }}
     >
         {isScreenShot && (
@@ -36,7 +36,7 @@ const WebcamComponent = (props: cameraProp) => {
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
-            style={{ width: "100%", maxWidth: "640px", marginBottom: "20px" }}/>
+            style={{ width: "50%", maxWidth: "640px", marginBottom: "20px" }}/>
                <button
         onClick={capture}
         style={{ padding: "10px 20px", fontSize: "16px" }}

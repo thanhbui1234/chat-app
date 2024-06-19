@@ -1,8 +1,13 @@
+import InfomationDetail from "./Info"
+import According from "./according"
 
 
 const Detail = () => {
   return (
-    <div className="flex-1">Detail</div>
+    <div className="flex-1">
+      <InfomationDetail/>
+      <According></According>
+    </div>
   )
 }
 
