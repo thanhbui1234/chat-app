@@ -1,0 +1,10 @@
+.container {
+    width: 90vw;
+    height: 90vh;
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 1%;
+    // like a opacity
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    ;
+  }

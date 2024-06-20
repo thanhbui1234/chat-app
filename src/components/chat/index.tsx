@@ -11,9 +11,7 @@ import { CiFaceSmile } from "react-icons/ci";
 import Picker, { EmojiClickData } from "emoji-picker-react";
 import WebcamComponent from "../audio/webcam";
 import Convesation from "./conversation";
-import { collection, getDocs  } from "firebase/firestore";
 import { useRef } from "react";
-import { db } from "../../libs/firebase";
 const Chat = () => {
   const darkModeContext = useContext(DarkModeContext);
   const [inputStr, setInputStr] = useState<string>("");
@@ -28,14 +26,6 @@ const Chat = () => {
     setShowEmoji(false);
   };
 
-  const logFireBase = async () =>{
-    await getDocs(collection(db, "bosss"))
-    .then((querySnapshot)=>{               
-        const newData = querySnapshot.docs
-            .map((doc) => ({...doc.data(), id:doc.id }));
-        console.log( newData);
-    })
-  }
   const endRef = useRef(null)
 
   const { isDarkMode } = darkModeContext;
@@ -101,7 +91,7 @@ const Chat = () => {
             onEmojiClick={onEmojiClick}
             open={showEmoji}
           />
-          <button onClick={()=>logFireBase()} className="mt-2 text-white bg-blue-600 w-16 h-7 rounded-md">
+          <button  className="mt-2 text-white bg-blue-600 w-16 h-7 rounded-md">
             Send
           </button>
         </div>
