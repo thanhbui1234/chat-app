@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
-import { loginSchema } from "../../schema/shcema";
+import {  loginSchema } from "../../schema/shcema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { auth } from "../../libs/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import useAppStore from "../../store";
+import { useNavigate } from 'react-router-dom';
 type FormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
+  const { loading ,login } = useAppStore();
   const navigate = useNavigate();
   const {
     register,
@@ -20,13 +20,9 @@ export default function LoginPage() {
 
   const onSubmit = handleSubmit(async (data: FormValues) => {
     const { email, password } = data;
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+     login(email,password,navigate)
   });
+
 
   return (
     <div className="flex flex-col justify-center m-auto items-center">
@@ -61,7 +57,7 @@ export default function LoginPage() {
           )}
         </div>
         <button type="submit" className="bg-blue-500 p-2 rounded-sm w-[100%]">
-          SignUp
+         {loading ==true ? 'Loading...' : 'Login'}
         </button>
         <h2 className="items-start">
         Not account signup

@@ -10,9 +10,10 @@ const Router = () => {
       <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/" element={<MainLayout />}>
           <Route index path="/login" element={<LoginPage></LoginPage>} />
-          <Route index path="/register" element={<RegisterPage></RegisterPage>} />
+          <Route  path="/register" element={<RegisterPage></RegisterPage>} />
           <Route path="/dashboard" element={<Home></Home>} />
-        </Route>
+        </Route>    
+        <Route path="*" element={<h1 className="text-[200px]"> 404</h1>} />
       </Routes>
     </>
   );

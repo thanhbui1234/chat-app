@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../../schema/shcema";
+import { CustomError, registerSchema } from "../../schema/shcema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { auth, db } from "../../libs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-
+import { toast } from "react-toastify";
+import {Link} from 'react-router-dom'
 type FormValues = z.infer<typeof registerSchema>;
+
+
 
 export default function RegisterPage() {
   const {
@@ -24,8 +27,9 @@ export default function RegisterPage() {
       await addDoc(collection(db, "users"), {
         data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error ) {
+      const customError = error as CustomError;
+      toast.error(customError.code ?? 'An unexpected error occurred.');
     }
   });
 
@@ -88,6 +92,8 @@ export default function RegisterPage() {
       <button type="submit" className="bg-blue-500 p-2 rounded-sm w-[100%]">
         SignUp
       </button>
+
+      <Link to={'/'}>back</Link>
     </form>
   );
 }

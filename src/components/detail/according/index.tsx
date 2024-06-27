@@ -5,8 +5,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import { GoSignOut } from "react-icons/go";
+import DraggableDialog from '../../UI/confirmDialog';
+import { useState } from 'react';
 
 const According = () => {
+  const [open,setOpen] = useState(false)
   return (
     <div className=''>
     <Accordion sx={{ p: 0, background:'none',color:'white' ,height:'20'}}>
@@ -51,6 +55,12 @@ const According = () => {
         <Button>Agree</Button>
       </AccordionActions>
     </Accordion>
+    <Accordion sx={{ p: 0, background:'none',color:'white' ,height:'20',border:'none'}}>
+      <AccordionDetails>
+      <GoSignOut onClick={()=>setOpen(true)} className='cursor-pointer' />
+      </AccordionDetails>
+    </Accordion>
+    <DraggableDialog open={open} setOpen={setOpen}></DraggableDialog>
   </div>
   )
 }
